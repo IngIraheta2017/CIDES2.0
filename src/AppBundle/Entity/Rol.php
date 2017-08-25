@@ -11,7 +11,16 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\RolRepository")
  */
 class Rol
-{
+{     /**
+     * One Rol has Many Asignaciones.
+     * @ORM\OneToMany(targetEntity="Asignacion", mappedBy="fkRol")
+     */
+    private $asignacion;
+    // ...
+
+    public function __construct() {
+        $this->asignacion = new ArrayCollection();
+    }
     /**
      * @var int
      *
@@ -46,7 +55,7 @@ class Rol
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -69,7 +78,7 @@ class Rol
     /**
      * Get nombreR
      *
-     * @return string 
+     * @return string
      */
     public function getNombreR()
     {
@@ -92,7 +101,7 @@ class Rol
     /**
      * Get descripcionR
      *
-     * @return string 
+     * @return string
      */
     public function getDescripcionR()
     {
@@ -115,7 +124,7 @@ class Rol
     /**
      * Get createAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreateAt()
     {
